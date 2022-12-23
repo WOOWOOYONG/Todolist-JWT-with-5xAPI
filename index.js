@@ -18,9 +18,13 @@ const signUpBtn = document.querySelector(".signUpBtn");
 const signUpPageBtn = document.querySelector(".signUpPageBtn");
 const loginPageBtn = document.querySelector(".loginPageBtn");
 
+//all inputs
+const inputs = document.querySelectorAll("input");
+
 //切換至註冊頁面
 signUpPageBtn.addEventListener("click", () => {
   resetErrMsg();
+  clearInput();
   loginForm.style.display = "none";
   signUpForm.style.display = "flex";
 });
@@ -28,9 +32,17 @@ signUpPageBtn.addEventListener("click", () => {
 //回到登入頁面
 loginPageBtn.addEventListener("click", () => {
   resetErrMsg();
+  clearInput();
   loginForm.style.display = "flex";
   signUpForm.style.display = "none";
 });
+
+//切換頁面時清空輸入資料
+const clearInput = () => {
+  inputs.forEach((input) => {
+    input.value = "";
+  });
+};
 
 //API url
 const url = "https://todoo.5xcamp.us";
@@ -47,22 +59,26 @@ const signUp = () => {
   axios
     .post(`${url}/users`, obj)
     .then((res) => {
-      alert(res.data.message);
-      location.reload();
+      alertify.notify(res.data.message, "success", 0.8);
+      setTimeout(() => {
+        location.reload();
+      }, 900);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      alertify.notify(err.response.data.message, "error", 2);
+    });
 };
 
 signUpBtn.addEventListener("click", () => {
-  checkSignUpForm();
   if (
     signUpEmail.value == "" ||
     signUpPassword.value == "" ||
     signUpName == "" ||
     checkPassword == ""
   ) {
-    alert("請輸入正確資料");
+    alertify.alert("錯誤訊息", "請輸入正確資料");
   } else {
+    checkSignUpForm();
     signUp();
   }
 });
@@ -78,19 +94,22 @@ const login = () => {
       nickname = res.data.nickname;
       localStorage.setItem("userToken", token);
       localStorage.setItem("userNickname", nickname);
-      console.log(res);
-      redirect();
+      alertify.notify(res.data.message, "success", 0.8);
+      setTimeout(() => {
+        redirect();
+      }, 1000);
     })
     .catch((err) => {
       console.log(err);
-      alert(err.response.data.message);
+      alertify.notify(err.response.data.message, "error", 2);
     });
 };
 
 loginBtn.addEventListener("click", () => {
-  if (loginEmail == "" || loginPassword == "") {
-    alert("請輸入正確資料");
+  if (loginEmail.value == "" || loginPassword.value == "") {
+    alertify.alert("錯誤訊息", "請輸入正確資料");
   } else {
+    checkLoginForm();
     login();
   }
 });
@@ -193,11 +212,3 @@ const setErrMsg = (errors) => {
     errMsg.innerText = errors[name];
   });
 };
-
-// loginEmail.addEventListener("input", () => {
-//   checkLoginForm();
-// });
-
-// loginPassword.addEventListener("input", () => {
-//   checkSignUpForm();
-// });

@@ -66,6 +66,7 @@ const addTodo = (todo) => {
       config
     )
     .then(() => {
+      alertify.notify("已新增", "success", 1);
       getTodo();
     })
     .catch((err) => console.log(err.response));
@@ -73,7 +74,7 @@ const addTodo = (todo) => {
 
 add_btn.addEventListener("click", () => {
   if (add_input.value.trim() == "") {
-    alert("請先輸入內容");
+    alertify.alert("錯誤訊息", "請先輸入資料");
     return;
   }
   const newTodo = add_input.value;
@@ -93,7 +94,7 @@ const deleteTodo = (todoId) => {
   axios
     .delete(`${url}/todos/${todoId}`, config)
     .then((res) => {
-      console.log(res.data.message);
+      alertify.notify(res.data.message, "warning", 1);
       getTodo();
     })
     .catch((err) => console.log(err.response));
@@ -134,6 +135,7 @@ clear_btn.addEventListener("click", () => {
 });
 
 const clearDoneItem = () => {
+  alertify.notify("已清除所有完成事項", "warning", 1);
   doneTodos = todos.filter((todo) => {
     return todo.completed_at !== null;
   });
@@ -217,12 +219,14 @@ const logout = () => {
     .then((res) => {
       localStorage.removeItem("userToken");
       localStorage.removeItem("userNickname");
-      alert(res.data.message);
-      redirect();
+      alertify.notify(res.data.message, "success", 0.8);
+      setTimeout(() => {
+        redirect();
+      }, 900);
     })
     .catch((err) => {
       console.log(err);
-      alert("登出失敗");
+      alertify.alert("錯誤訊息", "登出失敗");
     });
 };
 
