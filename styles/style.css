@@ -1,0 +1,332 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DotGothic16", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background-color: rgba(180, 178, 175, 0.79);
+}
+body .header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 10rem;
+  margin-top: 2rem;
+}
+body .header button {
+  font-size: 1.2rem;
+  padding: 0.2rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+body .header button:hover {
+  cursor: pointer;
+  background-color: rgb(88, 81, 69);
+  color: #fff;
+}
+body .title {
+  text-align: center;
+}
+body .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 3rem auto 1.5rem auto;
+  padding: 0 12px;
+}
+body .container h1 {
+  text-align: center;
+  letter-spacing: 3px;
+  font-size: 2rem;
+}
+body .container .card {
+  max-width: 100%;
+  border: none;
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+body .container input[type=text] {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  padding-right: 1rem;
+  background-color: rgba(254, 250, 241, 0.923);
+  color: rgb(20, 20, 20);
+}
+body .container input[type=text]::-moz-placeholder {
+  color: rgb(155, 155, 155);
+}
+body .container input[type=text]:-ms-input-placeholder {
+  color: rgb(155, 155, 155);
+}
+body .container input[type=text]::placeholder {
+  color: rgb(155, 155, 155);
+}
+body .container .todolist {
+  width: 400px;
+}
+body .container .todolist .tab {
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.4rem;
+  color: rgb(155, 155, 155);
+  background-color: rgb(225, 220, 211);
+  margin-top: 1rem;
+}
+body .container .todolist .tab li {
+  margin: 0 1rem;
+  padding: 0 0.5rem;
+}
+body .container .todolist .tab li.active {
+  color: rgb(20, 20, 20);
+  border-bottom: 2px solid #333;
+}
+body .container .todolist .tab li:hover {
+  cursor: pointer;
+}
+body .container .todolist .todo_input {
+  display: flex;
+  padding: 4px 4px 4px 0.5rem;
+  border: 1px solid #000;
+  background-color: rgb(254, 250, 241);
+}
+body .container .todolist .todo_input .add_btn {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  background-color: rgb(65, 90, 150);
+}
+body .container .todolist .todo_input .add_btn:hover {
+  cursor: pointer;
+  background-color: rgb(17, 30, 70);
+  transition: all 0.3s ease;
+}
+body .container .todolist .todo_input .add_btn i {
+  color: #fff;
+  font-size: 0.75rem;
+}
+body .container .todolist .content {
+  padding: 0.5rem 1rem 1rem 1rem;
+  background-color: rgb(254, 250, 241);
+  font-size: 1.3rem;
+}
+body .container .todolist .content .list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+body .container .todolist .content .list li .checkbox {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 100%;
+  display: block;
+  padding-left: 50px;
+  cursor: pointer;
+}
+body .container .todolist .content .list li .checkbox span {
+  display: block;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+  line-height: 1rem;
+}
+@media (max-width: 575px) {
+  body .container .todolist .content .list li .checkbox span {
+    padding-right: 1rem;
+  }
+}
+body .container .todolist .content .list li .checkbox input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+body .container .todolist .content .list li .checkbox span::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  height: 1rem;
+  width: 1rem;
+  border-radius: 5px;
+  border: 2px solid rgb(155, 155, 155);
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+body .container .todolist .content .list li .checkbox span::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 27%;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 0.5rem;
+  border-radius: 1px;
+  border-bottom: 3px solid #333;
+  border-right: 3px solid #333;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+body .container .todolist .content .list li .checkbox input:checked ~ span {
+  color: rgb(155, 155, 155);
+  text-decoration: line-through;
+}
+body .container .todolist .content .list li .checkbox input:checked ~ span::before {
+  border-color: transparent;
+  transform: translateY(-50%) scale(0);
+}
+body .container .todolist .content .list li .checkbox input:checked ~ span::after {
+  opacity: 1;
+}
+body .container .todolist .content .list li .delete_btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 20%;
+  background-color: rgb(254, 250, 241);
+}
+body .container .todolist .content .list li .delete_btn:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+body .container .todolist .content .list li .delete_btn i {
+  font-size: 0.8rem;
+}
+body .container .todolist .list_footer {
+  display: flex;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(225, 220, 211);
+  border-radius: 0 0 5px 5px;
+}
+body .container .todolist .list_footer .clear_btn {
+  margin-left: 2rem;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  background-color: rgba(210, 129, 102, 0.975);
+  border-radius: 5px;
+  color: #fff;
+}
+body .container .todolist .list_footer .clear_btn:hover {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: rgba(205, 76, 33, 0.975);
+}
+body .homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+body .homepage .formContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4rem;
+}
+body .homepage .homeImage {
+  margin-right: 2rem;
+}
+body .homepage .formArea {
+  font-size: 1.8rem;
+}
+body .homepage .formArea span {
+  display: block;
+  font-size: 1.2rem;
+  color: rgb(208, 82, 82);
+}
+body .homepage .formArea .loginForm {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+body .homepage .formArea .loginForm label {
+  display: block;
+  font-size: 1.6rem;
+  margin-top: 0.5rem;
+}
+body .homepage .formArea .loginForm .loginEmail {
+  font-size: 1.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+}
+body .homepage .formArea .loginForm .loginPassword {
+  font-size: 1.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+}
+body .homepage .formArea .loginForm .buttons {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+body .homepage .formArea .loginForm .buttons button {
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  margin: 1rem;
+  transition: all 0.3s ease;
+}
+body .homepage .formArea .loginForm .buttons button:hover {
+  background-color: #000;
+  color: #fff;
+}
+body .homepage .formArea .signUpForm {
+  display: none;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+body .homepage .formArea .signUpForm label {
+  display: block;
+  font-size: 1.6rem;
+}
+body .homepage .formArea .signUpForm input {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+}
+body .homepage .formArea .signUpForm .buttons {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+body .homepage .formArea .signUpForm .buttons button {
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  margin: 1rem;
+  transition: all 0.3s ease;
+}
+body .homepage .formArea .signUpForm .buttons button:hover {
+  background-color: #000;
+  color: #fff;
+}/*# sourceMappingURL=style.css.map */

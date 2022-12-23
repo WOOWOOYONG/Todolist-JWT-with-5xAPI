@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyTodoList</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="homepage">
+        <h1 class="title">歡迎來到你的待辦清單</h1>
+        <div class="formContainer">
+          <div class="homeImage">
+            <img src="/pika.gif" alt="img" />
+          </div>
+          <div class="formArea">
+            <form class="loginForm">
+              <div>
+                <label for="loginEmail">Email</label>
+                <input
+                  type="email"
+                  class="loginEmail"
+                  placeholder="請輸入Email"
+                  name="loginEmail"
+                />
+                <span class="loginEmail-msg"></span>
+              </div>
+
+              <div>
+                <label for="loginPassword">密碼</label>
+                <input
+                  type="password"
+                  class="loginPassword"
+                  placeholder="請輸入密碼"
+                  name="loginPassword"
+                />
+                <span class="loginPassword-msg"></span>
+              </div>
+
+              <div class="buttons">
+                <button type="button" class="loginBtn">登入</button>
+                <button type="button" class="signUpPageBtn">註冊帳號</button>
+              </div>
+            </form>
+            <form class="signUpForm">
+              <div>
+                <label for="signUpEmail">Email</label>
+                <input
+                  type="email"
+                  class="signUpEmail"
+                  placeholder="請輸入Email"
+                  name="signUpEmail"
+                />
+                <span class="signUpEmail-msg"></span>
+              </div>
+              <div>
+                <label for="signUpPassword">您的暱稱</label>
+                <input
+                  type="text"
+                  class="signUpname"
+                  placeholder="請輸入暱稱"
+                  name="nickname"
+                />
+                <span class="nickname-msg"></span>
+              </div>
+
+              <div>
+                <label for="signUpPassword">密碼</label>
+                <input
+                  type="password"
+                  class="signUpPassword"
+                  placeholder="請輸入密碼"
+                  name="signUpPassword"
+                />
+                <span class="signUpPassword-msg"></span>
+              </div>
+              <div>
+                <label for="signUpPassword">再次輸入密碼</label>
+                <input
+                  type="password"
+                  class="checkPassword"
+                  placeholder="請再次輸入密碼"
+                  name="confirmPassword"
+                />
+                <span class="confirmPassword-msg"></span>
+              </div>
+
+              <div class="buttons">
+                <button type="button" class="signUpBtn">註冊</button>
+                <button type="button" class="loginPageBtn">返回登入頁</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
