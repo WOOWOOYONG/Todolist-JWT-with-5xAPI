@@ -1,0 +1,95 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  .formContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4rem;
+  }
+  .homeImage {
+    margin-right: 2rem;
+  }
+  .formArea {
+    font-size: 1.8rem;
+    span {
+      display: block;
+      font-size: 1.2rem;
+      color: rgb(208, 82, 82);
+    }
+    .loginForm {
+      display: flex;
+      flex-direction: column;
+      margin-left: 2rem;
+      label {
+        display: block;
+        font-size: 1.6rem;
+        margin-top: 0.5rem;
+      }
+      .loginEmail {
+        font-size: 1.2rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
+      }
+      .loginPassword {
+        font-size: 1.2rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
+      }
+      .buttons {
+        display: flex;
+        margin-top: 1rem;
+        justify-content: flex-start;
+
+        button {
+          cursor: pointer;
+          padding: 0.2rem 0.5rem;
+          border-radius: 10px;
+          font-size: 1.3rem;
+          margin: 1rem;
+          transition: all 0.3s ease;
+          &:hover {
+            background-color: #000;
+            color: #fff;
+          }
+        }
+      }
+    }
+    .signUpForm {
+      display: none;
+      flex-direction: column;
+      margin-left: 2rem;
+      label {
+        display: block;
+        font-size: 1.6rem;
+      }
+      input {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
+      }
+      .buttons {
+        display: flex;
+        margin-top: 1rem;
+        justify-content: flex-start;
+
+        button {
+          cursor: pointer;
+          padding: 0.2rem 0.5rem;
+          border-radius: 10px;
+          font-size: 1.3rem;
+          margin: 1rem;
+          transition: all 0.3s ease;
+          &:hover {
+            background-color: #000;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

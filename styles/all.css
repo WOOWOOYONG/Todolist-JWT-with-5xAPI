@@ -509,7 +509,7 @@ template {
 }
 .container .todolist .todo_input .add_btn i {
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 .container .todolist .content {
   padding: 0.5rem 1rem 1rem 1rem;
@@ -595,8 +595,8 @@ template {
   opacity: 1;
 }
 .container .todolist .content .list li .delete_btn {
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 28px;
   border-radius: 20%;
   background-color: rgb(254, 250, 241);
 }
@@ -605,7 +605,7 @@ template {
   transform: scale(1.2);
 }
 .container .todolist .content .list li .delete_btn i {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 .container .todolist .list_footer {
   display: flex;
@@ -619,7 +619,7 @@ template {
 .container .todolist .list_footer .clear_btn {
   margin-left: 2rem;
   font-size: 1rem;
-  padding: 0 0.5rem;
+  padding: 0.3rem 0.5rem;
   background-color: rgba(210, 129, 102, 0.975);
   border-radius: 5px;
   color: #fff;
@@ -642,4 +642,4 @@ body {
   min-height: 100vh;
   font-size: 1.5rem;
   background-color: rgba(180, 178, 175, 0.79);
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=all.css.map */

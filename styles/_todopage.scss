@@ -1,0 +1,227 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 10rem;
+  margin-top: 2rem;
+  button {
+    font-size: 1.2rem;
+    padding: 0.2rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    &:hover {
+      cursor: pointer;
+      background-color: $logout-btn;
+      color: #fff;
+    }
+  }
+}
+.title {
+  text-align: center;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 3rem auto 1.5rem auto;
+  padding: 0 12px;
+
+  h1 {
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 2rem;
+  }
+
+  .card {
+    max-width: 100%;
+    border: none;
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    padding-right: 1rem;
+    background-color: rgba(254, 250, 241, 0.923);
+    color: $black;
+    &::placeholder {
+      color: $gray;
+    }
+  }
+
+  .todolist {
+    width: 400px;
+    .tab {
+      border-radius: 5px 5px 0 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.4rem;
+      color: $gray;
+      background-color: $tab-color;
+      margin-top: 1rem;
+      li {
+        margin: 0 1rem;
+        padding: 0 0.5rem;
+        &.active {
+          color: $black;
+          border-bottom: 2px solid #333;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .todo_input {
+      display: flex;
+      padding: 4px 4px 4px 0.5rem;
+      border: 1px solid #000;
+      background-color: $theme-color;
+
+      .add_btn {
+        margin-left: 0.5rem;
+        padding: 0.3rem 0.5rem;
+        border-radius: 5px;
+        background-color: $add-btn;
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(17, 30, 70);
+          transition: all 0.3s ease;
+        }
+        i {
+          color: #fff;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .content {
+      padding: 0.5rem 1rem 1rem 1rem;
+      background-color: $theme-color;
+      font-size: 1.3rem;
+
+      .list {
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 1rem 0;
+
+          .checkbox {
+            position: relative;
+            user-select: none;
+            width: 100%;
+            display: block;
+            padding-left: 50px;
+            cursor: pointer;
+
+            span {
+              display: block;
+              padding: 1rem 0;
+              border-bottom: 1px solid #eee;
+              line-height: 1rem;
+              @media (max-width: 575px) {
+                padding-right: 1rem;
+              }
+            }
+            input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              cursor: pointer;
+              display: block;
+              height: 100%;
+              width: 100%;
+              margin: 0;
+            }
+            span::before {
+              content: "";
+              position: absolute;
+              left: 0.5rem;
+              top: 50%;
+              transform: translateY(-50%) scale(1);
+              height: 1rem;
+              width: 1rem;
+              border-radius: 5px;
+              border: 2px solid $gray;
+              pointer-events: none;
+              transition: 0.3s ease;
+            }
+            span::after {
+              content: "";
+              position: absolute;
+              left: 14px;
+              top: 27%;
+              transform: rotate(45deg);
+              height: 15px;
+              width: 0.5rem;
+              border-radius: 1px;
+              border-bottom: 3px solid #333;
+              border-right: 3px solid #333;
+              pointer-events: none;
+              opacity: 0;
+              transition: 0.3s ease;
+            }
+            input:checked {
+              ~ span {
+                color: $gray;
+                text-decoration: line-through;
+              }
+              ~ span::before {
+                border-color: transparent;
+                transform: translateY(-50%) scale(0);
+              }
+              ~ span::after {
+                opacity: 1;
+              }
+            }
+          }
+
+          .delete_btn {
+            width: 25px;
+            height: 28px;
+            border-radius: 20%;
+            background-color: $theme-color;
+            &:hover {
+              cursor: pointer;
+              transform: scale(1.2);
+            }
+            i {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+    .list_footer {
+      display: flex;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      align-items: center;
+      justify-content: space-around;
+      background-color: $footer-color;
+      border-radius: 0 0 5px 5px;
+
+      .clear_btn {
+        margin-left: 2rem;
+        font-size: 1rem;
+        padding: 0.3rem 0.5rem;
+        background-color: $clear-btn;
+        border-radius: 5px;
+        color: #fff;
+        &:hover {
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background-color: rgba(205, 76, 33, 0.975);
+        }
+      }
+    }
+  }
+}
