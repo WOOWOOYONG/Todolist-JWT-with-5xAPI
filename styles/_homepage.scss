@@ -4,14 +4,29 @@
   justify-content: center;
   align-items: center;
   height: 90vh;
+  @include Mobile {
+    height: auto;
+  }
+  .title {
+    @include Mobile {
+      font-size: 2.2rem;
+      margin-top: 2.5rem;
+    }
+  }
   .formContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 4rem;
+    @include Mobile {
+      margin-top: 1rem;
+    }
   }
   .homeImage {
     margin-right: 2rem;
+    @include Mobile {
+      margin-right: 0;
+    }
   }
   .formArea {
     font-size: 1.8rem;
@@ -24,20 +39,43 @@
       display: flex;
       flex-direction: column;
       margin-left: 2rem;
+      @include Mobile {
+        margin-left: 0;
+      }
+      div:first-child {
+        @include Mobile {
+          margin: 0.5rem 0;
+        }
+      }
       label {
         display: block;
         font-size: 1.6rem;
         margin-top: 0.5rem;
       }
-      .loginEmail {
+      // .loginEmail {
+      //   font-size: 1.2rem;
+      //   padding: 0.2rem 0.5rem;
+      //   border-radius: 5px;
+      //   @include Mobile {
+      //     padding: 0.5rem;
+      //   }
+      // }
+      // .loginPassword {
+      //   font-size: 1.2rem;
+      //   padding: 0.2rem 0.5rem;
+      //   border-radius: 5px;
+      //   @include Mobile {
+      //     padding: 0.5rem;
+      //   }
+      // }
+      input {
         font-size: 1.2rem;
         padding: 0.2rem 0.5rem;
         border-radius: 5px;
-      }
-      .loginPassword {
-        font-size: 1.2rem;
-        padding: 0.2rem 0.5rem;
-        border-radius: 5px;
+        @include Mobile {
+          padding: 0.5rem;
+          margin-top: 0.5rem;
+        }
       }
       .buttons {
         display: flex;
@@ -55,6 +93,9 @@
             background-color: #000;
             color: #fff;
           }
+          @include Mobile {
+            padding: 0.5rem;
+          }
         }
       }
     }
@@ -62,6 +103,14 @@
       display: none;
       flex-direction: column;
       margin-left: 2rem;
+      @include Mobile {
+        margin-left: 0;
+      }
+      div {
+        @include Mobile {
+          margin-top: 0.5rem;
+        }
+      }
       label {
         display: block;
         font-size: 1.6rem;
@@ -71,12 +120,15 @@
         margin-bottom: 0.5rem;
         padding: 0.2rem 0.5rem;
         border-radius: 5px;
+        @include Mobile {
+          padding: 0.5rem;
+          margin-top: 0.5rem;
+        }
       }
       .buttons {
         display: flex;
         margin-top: 1rem;
         justify-content: flex-start;
-
         button {
           cursor: pointer;
           padding: 0.2rem 0.5rem;
@@ -87,6 +139,9 @@
           &:hover {
             background-color: #000;
             color: #fff;
+          }
+          @include Mobile {
+            padding: 0.5rem;
           }
         }
       }

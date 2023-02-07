@@ -318,14 +318,35 @@ template {
   align-items: center;
   height: 90vh;
 }
+@media (max-width: 390px) {
+  .homepage {
+    height: auto;
+  }
+}
+@media (max-width: 390px) {
+  .homepage .title {
+    font-size: 2.2rem;
+    margin-top: 2.5rem;
+  }
+}
 .homepage .formContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 4rem;
 }
+@media (max-width: 390px) {
+  .homepage .formContainer {
+    margin-top: 1rem;
+  }
+}
 .homepage .homeImage {
   margin-right: 2rem;
+}
+@media (max-width: 390px) {
+  .homepage .homeImage {
+    margin-right: 0;
+  }
 }
 .homepage .formArea {
   font-size: 1.8rem;
@@ -340,20 +361,31 @@ template {
   flex-direction: column;
   margin-left: 2rem;
 }
+@media (max-width: 390px) {
+  .homepage .formArea .loginForm {
+    margin-left: 0;
+  }
+}
+@media (max-width: 390px) {
+  .homepage .formArea .loginForm div:first-child {
+    margin: 0.5rem 0;
+  }
+}
 .homepage .formArea .loginForm label {
   display: block;
   font-size: 1.6rem;
   margin-top: 0.5rem;
 }
-.homepage .formArea .loginForm .loginEmail {
+.homepage .formArea .loginForm input {
   font-size: 1.2rem;
   padding: 0.2rem 0.5rem;
   border-radius: 5px;
 }
-.homepage .formArea .loginForm .loginPassword {
-  font-size: 1.2rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 5px;
+@media (max-width: 390px) {
+  .homepage .formArea .loginForm input {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
 }
 .homepage .formArea .loginForm .buttons {
   display: flex;
@@ -372,10 +404,25 @@ template {
   background-color: #000;
   color: #fff;
 }
+@media (max-width: 390px) {
+  .homepage .formArea .loginForm .buttons button {
+    padding: 0.5rem;
+  }
+}
 .homepage .formArea .signUpForm {
   display: none;
   flex-direction: column;
   margin-left: 2rem;
+}
+@media (max-width: 390px) {
+  .homepage .formArea .signUpForm {
+    margin-left: 0;
+  }
+}
+@media (max-width: 390px) {
+  .homepage .formArea .signUpForm div {
+    margin-top: 0.5rem;
+  }
 }
 .homepage .formArea .signUpForm label {
   display: block;
@@ -386,6 +433,12 @@ template {
   margin-bottom: 0.5rem;
   padding: 0.2rem 0.5rem;
   border-radius: 5px;
+}
+@media (max-width: 390px) {
+  .homepage .formArea .signUpForm input {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+  }
 }
 .homepage .formArea .signUpForm .buttons {
   display: flex;
@@ -403,6 +456,11 @@ template {
 .homepage .formArea .signUpForm .buttons button:hover {
   background-color: #000;
   color: #fff;
+}
+@media (max-width: 390px) {
+  .homepage .formArea .signUpForm .buttons button {
+    padding: 0.5rem;
+  }
 }
 
 .header {
@@ -422,6 +480,12 @@ template {
   cursor: pointer;
   background-color: rgb(88, 81, 69);
   color: #fff;
+}
+@media (max-width: 390px) {
+  .header {
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+  }
 }
 
 .title {
@@ -457,9 +521,6 @@ template {
   color: rgb(20, 20, 20);
 }
 .container input[type=text]::-moz-placeholder {
-  color: rgb(155, 155, 155);
-}
-.container input[type=text]:-ms-input-placeholder {
   color: rgb(155, 155, 155);
 }
 .container input[type=text]::placeholder {
@@ -526,7 +587,6 @@ template {
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   width: 100%;
   display: block;

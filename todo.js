@@ -135,31 +135,39 @@ clear_btn.addEventListener("click", () => {
 });
 
 const clearDoneItem = () => {
-  alertify.notify("已清除所有完成事項", "warning", 1);
-  doneTodos = todos.filter((todo) => {
-    return todo.completed_at !== null;
-  });
-  axios.all(
-    doneTodos.map((item) => {
-      axios
-        .delete(`${url}/todos/${item.id}`, config)
-        .then((res) => {
-          doneTodos.forEach((item) => {
-            todos.splice(todos.indexOf(item), 1);
-          });
-          getTodo();
+  if (todos.length > 0) {
+    doneTodos = todos.filter((todo) => {
+      return todo.completed_at !== null;
+    });
+    if (doneTodos.length > 0) {
+      alertify.notify("已清除所有完成事項", "warning", 1);
+      axios.all(
+        doneTodos.map((item) => {
+          axios
+            .delete(`${url}/todos/${item.id}`, config)
+            .then((res) => {
+              doneTodos.forEach((item) => {
+                todos.splice(todos.indexOf(item), 1);
+              });
+              getTodo();
+            })
+            .catch((err) => console.log(err.response));
         })
-        .catch((err) => console.log(err.response));
-    })
-  );
-  //清除後回到'全部‘頁籤
-  todoTabs.forEach((tab) => {
-    tab.classList.remove("active");
-  });
-  todoTabs[0].classList.add("active");
-  tabStatus = "all";
+      );
+      //清除後回到'全部‘頁籤
+      todoTabs.forEach((tab) => {
+        tab.classList.remove("active");
+      });
+      todoTabs[0].classList.add("active");
+      tabStatus = "all";
 
-  setTodobyStatus(tabStatus);
+      setTodobyStatus(tabStatus);
+    } else {
+      alertify.notify("目前沒有完成事項", "warning", 1);
+    }
+  } else {
+    alertify.notify("目前沒有待辦事項", "warning", 1);
+  }
 };
 
 //計算剩餘未完成事項
