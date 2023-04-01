@@ -1,15 +1,15 @@
-@import "normalize";
-@import "variable";
-@import "media";
-@import "homepage";
-@import "todopage";
-@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
+@import 'normalize';
+@import 'variable';
+@import 'media';
+@import 'homepage';
+@import 'todopage';
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "DotGothic16", sans-serif;
+  font-family: 'DotGothic16', sans-serif;
   list-style-type: none;
 }
 

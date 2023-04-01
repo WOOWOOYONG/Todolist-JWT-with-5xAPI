@@ -527,7 +527,7 @@ template {
   color: rgb(155, 155, 155);
 }
 .container .todolist {
-  width: 400px;
+  max-width: 400px;
 }
 .container .todolist .tab {
   border-radius: 5px 5px 0 0;
@@ -655,13 +655,17 @@ template {
   opacity: 1;
 }
 .container .todolist .content .list li .delete_btn {
-  width: 25px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 20%;
   background-color: rgb(254, 250, 241);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container .todolist .content .list li .delete_btn:hover {
   cursor: pointer;
+  background-color: rgb(223, 189, 130);
   transform: scale(1.2);
 }
 .container .todolist .content .list li .delete_btn i {
