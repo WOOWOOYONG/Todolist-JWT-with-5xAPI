@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -357,8 +358,6 @@ template {
   color: rgb(208, 82, 82);
 }
 .homepage .formArea .loginForm {
-  display: flex;
-  flex-direction: column;
   margin-left: 2rem;
 }
 @media (max-width: 390px) {
@@ -410,8 +409,6 @@ template {
   }
 }
 .homepage .formArea .signUpForm {
-  display: none;
-  flex-direction: column;
   margin-left: 2rem;
 }
 @media (max-width: 390px) {
@@ -461,6 +458,11 @@ template {
   .homepage .formArea .signUpForm .buttons button {
     padding: 0.5rem;
   }
+}
+
+/*控制表單顯示*/
+.hidden {
+  display: none;
 }
 
 .header {

@@ -18,20 +18,23 @@ const signUpBtn = document.querySelector('.signUpBtn');
 const signUpPageBtn = document.querySelector('.signUpPageBtn');
 const loginPageBtn = document.querySelector('.loginPageBtn');
 
+// loginForm.style.display = 'flex';
+// signUpForm.style.display = 'none';
+
 //切換至註冊頁面
 signUpPageBtn.addEventListener('click', () => {
   resetErrMsg();
   loginForm.reset();
-  loginForm.style.display = 'none';
-  signUpForm.style.display = 'flex';
+  loginForm.classList.add('hidden');
+  signUpForm.classList.remove('hidden');
 });
 
 //回到登入頁面
 loginPageBtn.addEventListener('click', () => {
   resetErrMsg();
   signUpForm.reset();
-  loginForm.style.display = 'flex';
-  signUpForm.style.display = 'none';
+  loginForm.classList.remove('hidden');
+  signUpForm.classList.add('hidden');
 });
 
 //API url
@@ -59,19 +62,21 @@ const signUp = () => {
     });
 };
 
-signUpBtn.addEventListener('click', () => {
+//確認註冊表單是否填寫
+const handelSignUp = () => {
   if (
     signUpEmail.value === '' ||
     signUpPassword.value === '' ||
     signUpName.value === '' ||
     checkPassword.value === ''
   ) {
-    checkLoginForm();
     alertify.alert('錯誤訊息', '請輸入正確資料');
   } else {
     checkSignUpForm();
   }
-});
+};
+
+signUpBtn.addEventListener('click', handelSignUp);
 
 //使用者登入
 const login = () => {
@@ -95,6 +100,7 @@ const login = () => {
     });
 };
 
+//確認登入表單是否填寫
 const handleLogin = () => {
   if (loginEmail.value === '' || loginPassword.value === '') {
     alertify.alert('錯誤訊息', '請輸入正確資料');
@@ -105,9 +111,17 @@ const handleLogin = () => {
 
 loginBtn.addEventListener('click', handleLogin);
 
+//鍵盤Enter確認送出資料
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
-    handleLogin();
+    if (!loginForm.classList.contains('hidden')) {
+      console.log('login');
+      handleLogin();
+    }
+    if (!signUpForm.classList.contains('hidden')) {
+      console.log('signup');
+      handelSignUp();
+    }
   }
 });
 
@@ -121,7 +135,6 @@ const redirect = () => {
 };
 
 //validate.js 表單驗證
-
 //註冊資料驗證
 const signUpConstraints = {
   signUpEmail: {

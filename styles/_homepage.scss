@@ -36,8 +36,6 @@
       color: rgb(208, 82, 82);
     }
     .loginForm {
-      display: flex;
-      flex-direction: column;
       margin-left: 2rem;
       @include Mobile {
         margin-left: 0;
@@ -100,8 +98,6 @@
       }
     }
     .signUpForm {
-      display: none;
-      flex-direction: column;
       margin-left: 2rem;
       @include Mobile {
         margin-left: 0;
@@ -147,4 +143,9 @@
       }
     }
   }
+}
+
+/*控制表單顯示*/
+.hidden {
+  display: none;
 }
