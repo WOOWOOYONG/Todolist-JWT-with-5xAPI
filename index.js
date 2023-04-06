@@ -115,11 +115,9 @@ loginBtn.addEventListener('click', handleLogin);
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     if (!loginForm.classList.contains('hidden')) {
-      console.log('login');
       handleLogin();
     }
     if (!signUpForm.classList.contains('hidden')) {
-      console.log('signup');
       handelSignUp();
     }
   }
