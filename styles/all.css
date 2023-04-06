@@ -696,6 +696,13 @@ template {
   background-color: rgba(205, 76, 33, 0.975);
 }
 
+.noTodo {
+  text-align: center;
+  font-size: 1.8rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 * {
   margin: 0;
   padding: 0;

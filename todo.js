@@ -38,6 +38,10 @@ const renderTodo = (todos) => {
   //     </li>`;
   // });
   // listArea.innerHTML = str;
+  if (todos.length === 0) {
+    listArea.innerHTML = `<h2 class='noTodo'>目前無待辦事項!</h2>`;
+    return;
+  }
   const items = todos.map((item) => {
     const { id, completed_at, content } = item;
     return `<li>
@@ -69,6 +73,10 @@ const getTodo = () => {
 
 //新增待辦事項
 const addTodo = (todo) => {
+  if (add_input.value.trim() === '') {
+    alertify.alert('錯誤訊息', '請先輸入資料');
+    return;
+  }
   axios
     .post(
       `${url}/todos`,
@@ -82,21 +90,24 @@ const addTodo = (todo) => {
     .then(() => {
       alertify.notify('已新增', 'success', 1);
       getTodo();
+      renderTodo(todos);
+      add_input.value = '';
+      //新增後回到'全部'頁籤
+      resetTodoTabs();
     })
     .catch((err) => console.log(err.response));
 };
 
 add_btn.addEventListener('click', () => {
-  if (add_input.value.trim() === '') {
-    alertify.alert('錯誤訊息', '請先輸入資料');
-    return;
-  }
   const newTodo = add_input.value;
   addTodo(newTodo);
-  renderTodo(todos);
-  add_input.value = '';
-  //新增後回到'全部'頁籤
-  resetTodoTabs();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const newTodo = add_input.value;
+    addTodo(newTodo);
+  }
 });
 
 //刪除待辦事項
@@ -121,21 +132,40 @@ listArea.addEventListener('click', (e) => {
 });
 
 //切換待辦事項完成狀態
+const toggleTodo = (id) => {
+  axios
+    .patch(`${url}/todos/${id}/toggle`, {}, config)
+    .then((res) => {
+      if (res.status === 200) {
+        getTodo();
+      }
+    })
+    .catch((err) => console.log(err));
+};
+
 listArea.addEventListener('click', (e) => {
   if (
     e.target.getAttribute('class') !== 'delete_btn' &&
     e.target.getAttribute('class') !== 'fa-solid fa-xmark'
   ) {
     const selectId = e.target.getAttribute('data-id');
-    const selectTodo = todos.filter((todo) => {
-      return todo.id === selectId;
-    })[0];
-    axios.patch(`${url}/todos/${selectId}/toggle`, {}, config).then((res) => {
-      todos.splice(todos.indexOf(selectTodo), 1, res.data);
-      renderTodo(todos);
-      countUndone(todos);
-      setTodobyStatus(tabStatus);
-    });
+    if (selectId) {
+      toggleTodo(selectId);
+
+      //本來想切換狀態後在本地端排序，但快速切換狀態時，會有錯誤
+      // const selectTodo = todos.filter((todo) => {
+      //   return todo.id === selectId;
+      // })[0];
+      // axios
+      //   .patch(`${url}/todos/${selectId}/toggle`, {}, config)
+      //   .then((res) => {
+      //     todos.splice(todos.indexOf(selectTodo), 1, res.data);
+      //     renderTodo(todos);
+      //     countUndone(todos);
+      //     setTodobyStatus(tabStatus);
+      //   })
+      //   .catch((err) => console.log(err));
+    }
   }
 });
 
@@ -217,7 +247,7 @@ tab.addEventListener('click', (e) => {
 
 //重置Todo頁籤
 const resetTodoTabs = () => {
-  for (let tab of todoTabs) {
+  for (const tab of todoTabs) {
     tab.classList.remove('active');
   }
   todoTabs[0].classList.add('active');
@@ -225,11 +255,11 @@ const resetTodoTabs = () => {
 };
 
 const changeTab = (e) => {
-  let selectedTab = e.target.dataset.state;
+  const selectedTab = e.target.dataset.state;
   // todoTabs.forEach((tab) => {
   //   tab.classList.remove('active');
   // });
-  for (let tab of todoTabs) {
+  for (const tab of todoTabs) {
     tab.classList.remove('active');
   }
   e.target.classList.add('active');

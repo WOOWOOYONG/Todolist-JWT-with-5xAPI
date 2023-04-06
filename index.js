@@ -112,8 +112,8 @@ const handleLogin = () => {
 loginBtn.addEventListener('click', handleLogin);
 
 //鍵盤Enter確認送出資料
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
     if (!loginForm.classList.contains('hidden')) {
       handleLogin();
     }
