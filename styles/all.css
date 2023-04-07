@@ -703,6 +703,14 @@ template {
   padding-bottom: 3rem;
 }
 
+.notActive {
+  pointer-events: none;
+}
+
+.notAllow {
+  cursor: not-allowed;
+}
+
 * {
   margin: 0;
   padding: 0;

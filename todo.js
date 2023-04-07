@@ -7,6 +7,7 @@ const clear_btn = document.querySelector('.clear_btn');
 const remainingArea = document.querySelector('.remaining');
 const title = document.querySelector('.title');
 const logoutBtn = document.querySelector('.logout');
+const todoContent = document.querySelector('.content');
 let tabStatus = 'all';
 
 //API url
@@ -90,7 +91,6 @@ const addTodo = (todo) => {
     .then(() => {
       alertify.notify('已新增', 'success', 1);
       getTodo();
-      renderTodo(todos);
       add_input.value = '';
       //新增後回到'全部'頁籤
       resetTodoTabs();
@@ -131,16 +131,46 @@ listArea.addEventListener('click', (e) => {
   }
 });
 
-//切換待辦事項完成狀態
+//切換待辦事項完成狀態，重新getTodo會導致順序錯亂
+// const toggleTodo = (id) => {
+//   axios
+//     .patch(`${url}/todos/${id}/toggle`, {}, config)
+//     .then((res) => {
+//       if (res.status === 200) {
+//         getTodo();
+//       }
+//     })
+//     .catch((err) => console.log(err));
+// };
+
+//只接收回傳更新狀態後的該筆待辦事項，加入本地的todos陣列，維持排序
 const toggleTodo = (id) => {
+  const selectTodo = todos.filter((todo) => {
+    return todo.id === id;
+  })[0];
   axios
     .patch(`${url}/todos/${id}/toggle`, {}, config)
     .then((res) => {
       if (res.status === 200) {
-        getTodo();
+        todos.splice(todos.indexOf(selectTodo), 1, res.data);
       }
     })
+    .then(() => {
+      renderTodo(todos);
+      countUndone(todos);
+      setTodobyStatus(tabStatus);
+    })
     .catch((err) => console.log(err));
+};
+
+//防止待辦事項切換狀態過於頻繁
+const delayedClick = () => {
+  listArea.classList.add('notActive');
+  todoContent.classList.add('notAllow');
+  setTimeout(() => {
+    listArea.classList.remove('notActive');
+    todoContent.classList.remove('notAllow');
+  }, 400);
 };
 
 listArea.addEventListener('click', (e) => {
@@ -150,21 +180,8 @@ listArea.addEventListener('click', (e) => {
   ) {
     const selectId = e.target.getAttribute('data-id');
     if (selectId) {
+      delayedClick();
       toggleTodo(selectId);
-
-      //本來想切換狀態後在本地端排序，但快速切換狀態時，會有錯誤
-      // const selectTodo = todos.filter((todo) => {
-      //   return todo.id === selectId;
-      // })[0];
-      // axios
-      //   .patch(`${url}/todos/${selectId}/toggle`, {}, config)
-      //   .then((res) => {
-      //     todos.splice(todos.indexOf(selectTodo), 1, res.data);
-      //     renderTodo(todos);
-      //     countUndone(todos);
-      //     setTodobyStatus(tabStatus);
-      //   })
-      //   .catch((err) => console.log(err));
     }
   }
 });
@@ -184,11 +201,12 @@ const clearDoneItem = () => {
               //因為使用axios.all刪除所有已完成事項後
               //會再執行一次getTodo從server拿到新的todos
               //就不需要再更新本地端的todos
-
               // doneTodos.forEach((item) => {
               //   todos.splice(todos.indexOf(item), 1);
               // });
-              getTodo();
+              if (res.status === 200) {
+                getTodo();
+              }
             })
             .catch((err) => console.log(err.response));
         })
@@ -219,7 +237,7 @@ const countUndone = (todos) => {
   remainingArea.textContent = `${undoneNum} 個待完成`;
 };
 
-//redner todolist by status
+//根據完成狀態頁籤來切換待辦事項
 const setTodobyStatus = (status) => {
   switch (status) {
     case 'undone':

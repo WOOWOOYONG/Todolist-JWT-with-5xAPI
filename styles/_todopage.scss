@@ -240,3 +240,11 @@
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+
+.notActive {
+  pointer-events: none;
+}
+
+.notAllow {
+  cursor: not-allowed;
+}
