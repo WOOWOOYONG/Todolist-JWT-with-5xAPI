@@ -39,7 +39,7 @@ const renderTodo = (todos) => {
   //     </li>`;
   // });
   // listArea.innerHTML = str;
-  if (todos.length === 0) {
+  if (todos.length === 0 && tabStatus !== 'done') {
     listArea.innerHTML = `<h2 class='noTodo'>目前無待辦事項!</h2>`;
     return;
   }
@@ -247,7 +247,13 @@ const setTodobyStatus = (status) => {
 
     case 'done':
       const doneList = todos.filter((todo) => todo.completed_at !== null);
-      renderTodo(doneList);
+      console.log(todos);
+      if (todos.length === 0) {
+        listArea.innerHTML = `<h2 class='noTodo'>目前你一事無成</h2>`;
+      } else {
+        renderTodo(doneList);
+      }
+
       break;
 
     default:
