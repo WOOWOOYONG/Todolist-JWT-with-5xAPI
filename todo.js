@@ -1,9 +1,9 @@
-const add_input = document.querySelector('.add_input');
-const add_btn = document.querySelector('.add_btn');
+const addInput = document.querySelector('.add_input');
+const addBtn = document.querySelector('.add_btn');
 const listArea = document.querySelector('.list');
 const tab = document.querySelector('.tab');
 const todoTabs = document.querySelectorAll('.tabState');
-const clear_btn = document.querySelector('.clear_btn');
+const clearBtn = document.querySelector('.clear_btn');
 const remainingArea = document.querySelector('.remaining');
 const title = document.querySelector('.title');
 const logoutBtn = document.querySelector('.logout');
@@ -74,7 +74,7 @@ const getTodo = () => {
 
 //新增待辦事項
 const addTodo = (todo) => {
-  if (add_input.value.trim() === '') {
+  if (addInput.value.trim() === '') {
     alertify.alert('錯誤訊息', '請先輸入資料');
     return;
   }
@@ -91,21 +91,21 @@ const addTodo = (todo) => {
     .then(() => {
       alertify.notify('已新增', 'success', 1);
       getTodo();
-      add_input.value = '';
+      addInput.value = '';
       //新增後回到'全部'頁籤
       resetTodoTabs();
     })
     .catch((err) => console.log(err.response));
 };
 
-add_btn.addEventListener('click', () => {
-  const newTodo = add_input.value;
+addBtn.addEventListener('click', () => {
+  const newTodo = addInput.value;
   addTodo(newTodo);
 });
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
-    const newTodo = add_input.value;
+    const newTodo = addInput.value;
     addTodo(newTodo);
   }
 });
@@ -187,6 +187,7 @@ listArea.addEventListener('click', (e) => {
 });
 
 const clearDoneItem = () => {
+  let doneTodos = [];
   if (todos.length > 0) {
     doneTodos = todos.filter((todo) => {
       return todo.completed_at !== null;
@@ -223,7 +224,7 @@ const clearDoneItem = () => {
 };
 
 //清除已完成事項
-clear_btn.addEventListener('click', clearDoneItem);
+clearBtn.addEventListener('click', clearDoneItem);
 
 //計算剩餘未完成事項
 const countUndone = (todos) => {
