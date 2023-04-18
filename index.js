@@ -152,9 +152,13 @@ const signUpConstraints = {
       message: '^密碼需大於6個字元',
     },
   },
-  nickname: {
+  nickName: {
     presence: {
       message: '^請輸入暱稱',
+    },
+    format: {
+      pattern: '/^[a-zA-Z0-9]+$/',
+      message: '^不得使用特殊符號',
     },
   },
   confirmPassword: {
